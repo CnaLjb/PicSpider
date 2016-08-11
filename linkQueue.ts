@@ -42,7 +42,11 @@ export  class LinkQueue{
     }
 
     /**为队列添加节点 */
-    public push(node:QNode){
+    public push(url?:string,node?:QNode){
+        var node:QNode;
+        if(url &&　!node){
+            node = new QNode(url);
+        }
         if(this.rear != null){
             this.rear.next = node;
         }
