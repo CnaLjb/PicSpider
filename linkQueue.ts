@@ -30,7 +30,7 @@ export  class LinkQueue{
 
 
     /**弹出队列头结点 */
-    public popup(){
+    public popup():QNode{
         var head = this.front;
         if(head){
             this.front = this.front.next;
@@ -42,15 +42,14 @@ export  class LinkQueue{
     }
 
     /**为队列添加节点 */
-    public push(url?:string,node?:QNode){
-        var node:QNode;
-        if(url &&　!node){
-            node = new QNode(url);
-        }
-        if(this.rear != null){
+    public push(url:string){
+        var node:QNode = new QNode(url);
+        if(this.front === this.rear  && this.rear == null){
+            this.front = this.rear = node;
+        }else{
             this.rear.next = node;
+            this.rear = node;
         }
-        this.rear = node;
         this.size++;                
     }
 
